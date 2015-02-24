@@ -1,2 +1,2 @@
 # fem-ipython-notebook
-An iPython notebook that show an exmple of the Finite Element Method
+An iPython notebook that shows an example of the Finite Element Method
