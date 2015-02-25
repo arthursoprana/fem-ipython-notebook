@@ -17,6 +17,11 @@ This will always be an empty file in IPython
     font-family: 'Source Code Pro', Consolas, monocco, monospace;
 }
 
+div.cell.code_cell {  
+    /* Areat containing both code and output */
+	max-width: 105ex; /* instead of 100%, this is better to be the same as in div.text_cell*/
+}
+
 div.input_area {
     border-color: rgba(0,0,0,0.10);
     background: rbga(0,0,0,0.5);
