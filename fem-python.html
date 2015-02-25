@@ -1347,7 +1347,7 @@ input.engine_num_input{width:60px}
 .ansiblack{color:#000}
 .ansired{color:#8b0000}
 .ansigreen{color:#006400}
-.ansiyellow{color:#a52a2a}
+.ansiyellow{color:#c4a000}
 .ansiblue{color:#00008b}
 .ansipurple{color:#9400d3}
 .ansicyan{color:#4682b4}
@@ -1649,7 +1649,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -1664,7 +1664,8 @@ div#notebook {
         displayAlign: 'center',
         "HTML-CSS": {
             styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
+            linebreaks: { automatic: true },
+			scale: 175
         }
     });
     </script>
@@ -1698,9 +1699,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[1]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -1732,9 +1731,7 @@ In&nbsp;[1]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">fem_data</span> <span class="kn">import</span> <span class="n">Setup</span><span class="p">,</span> <span class="n">GetSetupLargeCase</span><span class="p">,</span> <span class="n">GetSetupSmallCase</span>
@@ -1750,9 +1747,7 @@ In&nbsp;[2]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">number_of_dof</span>        <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">NumGL</span> <span class="c"># number of defrees of freedom</span>
@@ -1784,9 +1779,7 @@ In&nbsp;[3]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[4]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">ViewMesh</span><span class="p">(</span>
@@ -1828,9 +1821,7 @@ In&nbsp;[4]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">KeT3_EPT</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="n">mat_prop</span><span class="p">,</span> <span class="n">geo_prop</span><span class="p">,</span> <span class="n">body_force</span><span class="p">):</span>
@@ -1888,9 +1879,7 @@ In&nbsp;[5]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[6]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c"># --------------------------------------</span>
@@ -1923,9 +1912,7 @@ In&nbsp;[6]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[7]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">size</span> <span class="o">=</span> <span class="n">number_of_dof</span> <span class="o">*</span> <span class="n">number_of_nodes</span>
@@ -1999,9 +1986,7 @@ In&nbsp;[7]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[8]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">newmann_bc</span><span class="p">:</span>
@@ -2025,9 +2010,7 @@ In&nbsp;[8]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[9]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dirichlet_bc</span><span class="p">:</span>    
@@ -2057,9 +2040,7 @@ In&nbsp;[9]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[10]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
@@ -2081,9 +2062,7 @@ In&nbsp;[10]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[11]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">coord_def</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">number_of_nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -2119,9 +2098,7 @@ In&nbsp;[11]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[12]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">ViewMesh</span><span class="p">(</span><span class="n">coord_def</span><span class="p">,</span> <span class="n">connectivity</span><span class="p">,</span> <span class="n">hold</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
@@ -4054,9 +4031,7 @@ W4IgCILQMJRsCYIgCELDULIlCIIgCA1DyZYgCIIgNMz/A2/Rx+t5XU9AAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[13]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">StressT3_EPT</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="n">UEl</span><span class="p">,</span> <span class="n">mat_prop</span><span class="p">,</span> <span class="n">geo_prop</span><span class="p">):</span>
@@ -4134,9 +4109,7 @@ In&nbsp;[13]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[14]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">number_of_nodes</span><span class="p">)</span>
@@ -4242,9 +4215,7 @@ In&nbsp;[14]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[17]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">matplotlib.mlab</span> <span class="kn">import</span> <span class="n">griddata</span>
@@ -4876,9 +4847,7 @@ TkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[15]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre> 
@@ -4891,9 +4860,7 @@ In&nbsp;[15]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[15]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre> 
