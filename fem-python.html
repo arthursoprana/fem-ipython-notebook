@@ -1347,7 +1347,7 @@ input.engine_num_input{width:60px}
 .ansiblack{color:#000}
 .ansired{color:#8b0000}
 .ansigreen{color:#006400}
-.ansiyellow{color:#c4a000}
+.ansiyellow{color:#a52a2a}
 .ansiblue{color:#00008b}
 .ansipurple{color:#9400d3}
 .ansicyan{color:#4682b4}
@@ -1681,8 +1681,12 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="finite-elements-notebook">Finite Elements Notebook</h1>
-<p><em>Arthur B. Soprano - arthursoprano@gmail.com</em></p>
+<hr>
+<p><em>by Arthur B. Soprano - arthursoprano@gmail.com</em></p>
+<p><em>Class notes from Professors Giuseppe Gambolati and Carlo Janna: 
+<strong>Solving Geomechanical Problems with the Finite Element Method</strong>. Special thanks to Jaime Ambrus and Edson Tadeu Manoel for helping with the class notes.</em></p>
 <h2 id="indroduction">Indroduction</h2>
+<hr>
 <p>This notebook intends to give a brief review and a short example of the <strong>Finite Element Method - FEM</strong> using Python programming language.  </p>
 <h3 id="variational-principles">Variational Principles</h3>
 <p>We say that a variational principle exists if the solution to a (generally behaved) problem is obtained through the <strong>minimization</strong> of</p>
@@ -1714,7 +1718,9 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[37]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">image1</span> <span class="c"># Examples of square summable functions</span>
@@ -1728,7 +1734,8 @@ $$</p>
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[169]:</div>
+<div class="output_area"><div class="prompt output_prompt">
+    Out[37]:</div>
 
 
 <div class="output_jpeg output_subarea output_pyout">
@@ -5809,6 +5816,7 @@ $$</p>
 $$</p>
 <p>Notice that the set $\xi_1, \xi_2, \ldots, \xi_n$ defines a subspace $S_n$ of the full space $L_2$. It is intuitive that as $n$ increases $S_n$ approximates $L_2$ better and better with $S_n \rightarrow L_2$ as $n \rightarrow \infty$.</p>
 <h2 id="ritz-fem-method">Ritz FEM Method</h2>
+<hr>
 <p><strong>Ritz</strong> looks for an approximation $\bar{u}_n$ to the solution of the variational problem (i.e., the minimizing function $\bar{u}$) with the aid of an $L_2$ basis:</p>
 <p>$$
 \bar{u}_n = a_1 \xi_1 + a_2 \xi_2 + \ldots + a_n \xi_n
@@ -5873,7 +5881,9 @@ $$</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[193]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[38]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c"># Numerical example</span>
@@ -5932,6 +5942,7 @@ The selected basis is <strong>incomplete</strong> and totally unable to describe
 </li>
 </ol>
 <h2 id="galerkin-s-variational-approach">Galerkin&#39;s Variational approach</h2>
+<hr>
 <p>FEM with Galerkin does not require the existence of a variational principle associated to a corresponding PDE of the type</p>
 <p>$$
 \mathbf{A} u(x) = f(x)
@@ -5985,6 +5996,293 @@ $$
    $$</p>
 </li>
 </ol>
+<h3 id="triangular-finite-elements">Triangular Finite Elements</h3>
+<p>The usual basis functions for the triangular element is given by</p>
+<p>$$
+\xi_i = \frac{a_i + b_i x + c_i y}{2\Delta^e}
+$$</p>
+<p>where $\Delta^e$ is the triangle area</p>
+<p>$$
+A = \left( 
+\begin{matrix}
+  1 &amp;   1 &amp;   1 \\
+x_i &amp; x_j &amp; x_k \\
+y_i &amp; y_j &amp; y_k 
+\end{matrix}
+\right) \left| det(A) \right| = 2 \Delta^e
+$$</p>
+<p>and</p>
+<p>$$
+\begin{align}
+a_i &amp;= x_j y_k - x_k y_j \\
+b_i &amp;= y_j - y_k \\
+c_i &amp;= x_k - x_j
+\end{align}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[39]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">image2</span> <span class="c"># Example a triangular finite element</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[39]:</div>
+
+
+<div class="output_jpeg output_subarea output_pyout">
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcG
+BwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAB7AKwDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKK
+KACiiigAooooAKKKKACkNedfsp/Hz/hpv4Jaf4y/sn+xPt97qFp9j+0/afL+yX1xabvM2Jnf5G/G
+0bd+MnGT6NQJO6ugopFGBS0DCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKwfibqPif
+SvA1/ceDdH0HXvEsYT7FYa1q8ukWNwS6h/Muora6ePCFmG2B8sAp2gll3qKBrR3PHv2Kvgvq37MP
+7Lnhvwv4ovtJudbsDeX+qSae7myiuLu8nvJY4nkVXeONp2jV2VC4QMUTdtXc8Dftb/DP4meL5PD/
+AIf8d+E9a1yEtusLLV7a4uRtOGzGjlhjvkcV8Zf8HEfxr8UfDH9mfw/oug3F1Y6f4u1NrXVbiBij
+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
+ooA//9k=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that for triangular elements, integrals can be performed in closed form (without using quadrature).</p>
+<h3 id="solving-equilibrium-equations-by-finite-element">Solving Equilibrium Equations by Finite Element</h3>
+<p><strong>Cauchy Equilibrium Equations</strong></p>
+<p>$$
+\begin{align}
+\frac{\partial \sigma_x}{\partial x} + \frac{\partial \tau_{xy}}{\partial y} +\frac{\partial \tau_{xz}}{\partial z} + X &amp;= 0 \\
+\frac{\partial \tau_{xy}}{\partial x} + \frac{\partial \sigma_y}{\partial y} +\frac{\partial \tau_{yz}}{\partial z} + Y &amp;= 0 \\
+\frac{\partial \tau_{xz}}{\partial x} + \frac{\partial \tau_{yz}}{\partial y} +\frac{\partial \sigma_z}{\partial z} + Z &amp;= 0 \\
+\end{align}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Theorem of Virtual Work</strong></p>
+<blockquote>
+<p>A body is in equilibrium if and only if the virtual work of internal forces is equal to the virtual work of the external froces for any virtual displacement.</p>
+</blockquote>
+<p>$$
+\underbrace{\delta L^i}_{\substack{\text{Work of}\\\text{internal forces}}} = \underbrace{\delta L^e}_{\substack{\text{Work of}\\\text{external forces}}}
+$$</p>
+<p>$$
+\delta L^i = \int_\Omega \underline{\sigma}^T \cdot \underline{\delta \epsilon}\, \mathrm{d}\Omega  
+$$</p>
+<p>$$
+\delta L^e = \int_\Omega X^T \cdot \underline{\delta u}\, \mathrm{d}\Omega + \int_\Gamma \underline{t}^T \cdot \underline{\delta u}\, \mathrm{d}S
+$$</p>
+<p>$$
+\underline{u}^e = 
+\left( 
+\begin{matrix}
+u_e \\
+v_e 
+\end{matrix}
+\right) 
+= \underbrace{
+\left( 
+\begin{matrix}
+\xi^e_i &amp;       0 &amp; \xi^e_j &amp;       0 &amp; \xi^e_k &amp;       0 \\
+      0 &amp; \xi^e_i &amp;       0 &amp; \xi^e_j &amp;       0 &amp; \xi^e_k
+\end{matrix}
+\right)}_{N^e}
+\underbrace{\left( 
+\begin{matrix}
+u_i \\
+v_i \\
+u_j \\
+v_j \\
+u_k \\
+v_k
+\end{matrix}
+\right)}_{\underline{u}^e_N}
+$$</p>
+<p>$$
+\underline{\epsilon}^e = 
+\left( 
+\begin{matrix}
+\frac{\partial}{\partial x} &amp;                           0 \\
+                          0 &amp; \frac{\partial}{\partial y} \\
+\frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y}
+\end{matrix}
+\right) 
+\left( 
+\begin{matrix}
+\xi^e_i &amp;       0 &amp; \xi^e_j &amp;       0 &amp; \xi^e_k &amp;       0 \\
+      0 &amp; \xi^e_i &amp;       0 &amp; \xi^e_j &amp;       0 &amp; \xi^e_k
+\end{matrix}
+\right)
+\left( 
+\begin{matrix}
+u_i \\
+v_i \\
+u_j \\
+v_j \\
+u_k \\
+v_k
+\end{matrix}
+\right)
+$$</p>
+<p>$$
+\underline{\epsilon}^e = \underbrace{\frac{1}{2 \Delta^e}
+\left( 
+\begin{matrix}
+b_i &amp;   0 &amp; b_j &amp;   0 &amp; b_k &amp;   0 \\
+  0 &amp; c_i &amp;   0 &amp; c_j &amp;   0 &amp; c_k \\
+b_i &amp; c_i &amp; b_j &amp; c_j &amp; b_k &amp; c_k
+\end{matrix}
+\right)}_{B^e}
+\underline{u}^e_N
+$$</p>
+<p>$$
+\underline{\epsilon}^e = B^e \cdot \underline{u}^e_N
+$$</p>
+<p>We need to link deformation to stresses. Using linear elasticity and focusing on the isotropic case the <strong>constitutive equation</strong>, in matrix notation, is given by</p>
+<p>$$
+\underline{\sigma} = 
+\left( 
+\begin{matrix}
+\sigma_x \\
+\sigma_y \\
+\tau_{xy}
+\end{matrix}
+\right) 
+= \underbrace{\frac{E}{1 - \nu^2}
+\left( 
+\begin{matrix}
+  1 &amp; \nu &amp;   0 \\
+\nu &amp;   1 &amp;   0 \\
+  0 &amp;   0 &amp; \frac{1-\nu}{2} 
+\end{matrix}
+\right)}_{D = \text{Elastic Constitutive Matrix}}
+\left( 
+\begin{matrix}
+\epsilon_x \\
+\epsilon_y \\
+\gamma_{xy}
+\end{matrix}
+\right)
+$$</p>
+<p>$$
+\underline{\sigma} = D^e \cdot \underline{\epsilon}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\delta L^i = \int_{\Delta_e} \underline{\sigma}^T \cdot \underline{\delta \epsilon}\, \mathrm{d}A = \int_{\Delta_e} \underline{\delta \epsilon}^T \cdot \underline{\sigma} \, \mathrm{d}A
+$$</p>
+<p>$$
+\underline{\delta \epsilon} = B^e \cdot \delta \underline{u}^e_N
+$$</p>
+<p>$$
+\underline{\sigma} = D^e \cdot \underline{\epsilon} = D^e B^e \underline{u}^e_N
+$$</p>
+<p>$$
+\delta L^i = (\underline{u}^e_N)^T \int_{\Delta_e} (B^e)^T D^e B^e \underline{u}^e_N \, \mathrm{d}A = (\underline{u}^e_N)^T \left[ \Delta^e (B^e)^T D^e B^e \right] \underline{u}^e_N
+$$</p>
 </div>
 </div>
 </div>
@@ -5994,13 +6292,16 @@ $$
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="numerical-implementation">Numerical Implementation</h2>
+<hr>
 <p>First, let&#39;s import the necessary packages. We&#39;ll need <a href="http://www.numpy.org/">numpy</a> and <a href="http://matplotlib.org/">matplotlib</a>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[40]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -6032,7 +6333,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[41]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">fem_data</span> <span class="kn">import</span> <span class="n">Setup</span><span class="p">,</span> <span class="n">GetSetupLargeCase</span><span class="p">,</span> <span class="n">GetSetupSmallCase</span>
@@ -6048,7 +6351,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[118]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[42]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">number_of_dof</span>        <span class="o">=</span> <span class="n">setup</span><span class="o">.</span><span class="n">NumGL</span> <span class="c"># number of defrees of freedom</span>
@@ -6080,7 +6385,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[206]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[43]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">ViewMesh</span><span class="p">(</span>
@@ -6122,7 +6429,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[120]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[44]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">KeT3_EPT</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="n">mat_prop</span><span class="p">,</span> <span class="n">geo_prop</span><span class="p">,</span> <span class="n">body_force</span><span class="p">):</span>
@@ -6137,30 +6446,30 @@ $$
     <span class="n">t</span>  <span class="o">=</span> <span class="n">geo_prop</span>
 
     <span class="c"># Auxiliary functions</span>
-    <span class="n">a1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">a2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">a3</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ci</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cj</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ck</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">b1</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">b2</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">b3</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">bi</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">bj</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">bk</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">a3</span> <span class="o">*</span> <span class="n">b2</span> <span class="o">-</span> <span class="n">a2</span> <span class="o">*</span> <span class="n">b3</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">ck</span> <span class="o">*</span> <span class="n">bj</span> <span class="o">-</span> <span class="n">cj</span> <span class="o">*</span> <span class="n">bk</span><span class="p">)</span>
     <span class="n">area</span> <span class="o">=</span> <span class="n">d</span> <span class="o">/</span> <span class="mi">2</span>
 
     <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
-        <span class="p">[</span><span class="n">b1</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">b2</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">b3</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span> 
-        <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>   <span class="n">a1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">a2</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">a3</span><span class="p">],</span>
-        <span class="p">[</span><span class="n">a1</span><span class="p">,</span>   <span class="n">b1</span><span class="p">,</span>  <span class="n">a2</span><span class="p">,</span>   <span class="n">b2</span><span class="p">,</span>  <span class="n">a3</span><span class="p">,</span>   <span class="n">b3</span><span class="p">]</span>
+        <span class="p">[</span><span class="n">bi</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">bj</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">bk</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span> 
+        <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>   <span class="n">ci</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">cj</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">ck</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">ci</span><span class="p">,</span>   <span class="n">bi</span><span class="p">,</span>  <span class="n">cj</span><span class="p">,</span>   <span class="n">bj</span><span class="p">,</span>  <span class="n">ck</span><span class="p">,</span>   <span class="n">bk</span><span class="p">]</span>
         <span class="p">])</span>
 
-    <span class="n">C</span> <span class="o">=</span> <span class="n">Ex</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Nu</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">Ex</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Nu</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
         <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="n">Nu</span><span class="p">,</span>            <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span><span class="n">Nu</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>            <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Nu</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span> 
         <span class="p">])</span>
 
-    <span class="n">Ke</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">C</span> <span class="o">*</span> <span class="n">B</span> <span class="o">*</span> <span class="p">(</span><span class="n">area</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    <span class="n">Ke</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">D</span> <span class="o">*</span> <span class="n">B</span> <span class="o">*</span> <span class="p">(</span><span class="n">area</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
 
     <span class="n">Fe1</span> <span class="o">=</span> <span class="n">area</span> <span class="o">*</span> <span class="n">body_force</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span> \
         <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
@@ -6180,7 +6489,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[121]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[45]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c"># --------------------------------------</span>
@@ -6213,7 +6524,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[46]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">size</span> <span class="o">=</span> <span class="n">number_of_dof</span> <span class="o">*</span> <span class="n">number_of_nodes</span>
@@ -6287,7 +6600,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[123]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[47]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">newmann_bc</span><span class="p">:</span>
@@ -6311,7 +6626,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[48]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">dof</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dirichlet_bc</span><span class="p">:</span>    
@@ -6341,7 +6658,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[49]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>
@@ -6363,7 +6682,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[50]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">coord_def</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">number_of_nodes</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -6399,7 +6720,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[207]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[51]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -11006,7 +11329,9 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[128]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[52]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">StressT3_EPT</span><span class="p">(</span><span class="n">coord</span><span class="p">,</span> <span class="n">UEl</span><span class="p">,</span> <span class="n">mat_prop</span><span class="p">,</span> <span class="n">geo_prop</span><span class="p">):</span>
@@ -11020,30 +11345,30 @@ AABJRU5ErkJggg==
     <span class="n">t</span>  <span class="o">=</span> <span class="n">geo_prop</span>
 
     <span class="c"># Auxiliary functions</span>
-    <span class="n">a1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">a2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">a3</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ci</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cj</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ck</span> <span class="o">=</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">b1</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">b2</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">b3</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">bi</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">bj</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">bk</span> <span class="o">=</span> <span class="o">+</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">a3</span> <span class="o">*</span> <span class="n">b2</span> <span class="o">-</span> <span class="n">a2</span> <span class="o">*</span> <span class="n">b3</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">(</span><span class="n">ck</span> <span class="o">*</span> <span class="n">bj</span> <span class="o">-</span> <span class="n">cj</span> <span class="o">*</span> <span class="n">bk</span><span class="p">)</span>
     <span class="n">area</span> <span class="o">=</span> <span class="n">d</span> <span class="o">/</span> <span class="mi">2</span>
 
     <span class="n">B</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">d</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
-        <span class="p">[</span><span class="n">b1</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">b2</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">b3</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span> 
-        <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>   <span class="n">a1</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">a2</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">a3</span><span class="p">],</span>
-        <span class="p">[</span><span class="n">a1</span><span class="p">,</span>   <span class="n">b1</span><span class="p">,</span>  <span class="n">a2</span><span class="p">,</span>   <span class="n">b2</span><span class="p">,</span>  <span class="n">a3</span><span class="p">,</span>   <span class="n">b3</span><span class="p">]</span>
+        <span class="p">[</span><span class="n">bi</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">bj</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>  <span class="n">bk</span><span class="p">,</span>    <span class="mi">0</span><span class="p">],</span> 
+        <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>   <span class="n">ci</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">cj</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>   <span class="n">ck</span><span class="p">],</span>
+        <span class="p">[</span><span class="n">ci</span><span class="p">,</span>   <span class="n">bi</span><span class="p">,</span>  <span class="n">cj</span><span class="p">,</span>   <span class="n">bj</span><span class="p">,</span>  <span class="n">ck</span><span class="p">,</span>   <span class="n">bk</span><span class="p">]</span>
         <span class="p">])</span>
 
-    <span class="n">C</span> <span class="o">=</span> <span class="n">Ex</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Nu</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">Ex</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Nu</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([</span>
         <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="n">Nu</span><span class="p">,</span>            <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span><span class="n">Nu</span><span class="p">,</span>   <span class="mi">1</span><span class="p">,</span>            <span class="mi">0</span><span class="p">],</span>
         <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Nu</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span> 
         <span class="p">])</span>   
 
-    <span class="n">StressE</span> <span class="o">=</span> <span class="n">C</span> <span class="o">*</span> <span class="n">B</span> <span class="o">*</span> <span class="n">UEl</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">StressE</span> <span class="o">=</span> <span class="n">D</span> <span class="o">*</span> <span class="n">B</span> <span class="o">*</span> <span class="n">UEl</span><span class="o">.</span><span class="n">T</span>
        
     <span class="c"># Create 2D stress matrix</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">number_of_dof</span><span class="p">,</span> <span class="n">number_of_dof</span><span class="p">))</span>
@@ -11084,7 +11409,9 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[53]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">number_of_nodes</span><span class="p">)</span>
@@ -11190,7 +11517,9 @@ AABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[54]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="c"># Only works for the LARGE CASE</span>
@@ -12472,11 +12801,29 @@ oVDEiBJbCoVCoVAoFDGixJZCoVAoFApFjPx/9cAOXm6r8eIAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">
+In&nbsp;[55]:
+</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="n">image1</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;images/square_summable.jpg&#39;</span><span class="p">)</span>
+<span class="n">image2</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&#39;images/triangle_fe.jpg&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[55]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre> 
 </pre></div>
 
 </div>
