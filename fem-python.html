@@ -1668,6 +1668,25 @@ div#notebook {
         }
     });
     </script>
+    <!-- End of mathjax configuration --><!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true },
+			scale: 200
+        }
+    });
+    </script>
     <!-- End of mathjax configuration -->
 
 </head>
@@ -1685,6 +1704,42 @@ div#notebook {
 <p><em>by Arthur B. Soprano - arthursoprano@gmail.com</em></p>
 <p><em>Class notes from Professors Giuseppe Gambolati and Carlo Janna: 
 <strong>Solving Geomechanical Problems with the Finite Element Method</strong>. Special thanks to Jaime Ambrus and Edson Tadeu Manoel for helping with the class notes.</em></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, let&#39;s import the necessary packages. For our analysis, we&#39;ll need <a href="http://www.numpy.org/">numpy</a> and <a href="http://matplotlib.org/">matplotlib</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[93]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="c"># Remove this line for a pop-up (qt) plot</span>
+<span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="indroduction">Indroduction</h2>
 <hr>
 <p>This notebook intends to give a brief review and a short example of the <strong>Finite Element Method - FEM</strong> using Python programming language.  </p>
@@ -1719,7 +1774,7 @@ $$</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[37]:
+In&nbsp;[94]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1735,7 +1790,7 @@ In&nbsp;[37]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[37]:</div>
+    Out[94]:</div>
 
 
 <div class="output_jpeg output_subarea output_pyout">
@@ -5882,7 +5937,7 @@ $$</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[38]:
+In&nbsp;[95]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6025,7 +6080,7 @@ $$</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[39]:
+In&nbsp;[96]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6041,7 +6096,7 @@ In&nbsp;[39]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[39]:</div>
+    Out[96]:</div>
 
 
 <div class="output_jpeg output_subarea output_pyout">
@@ -6163,10 +6218,10 @@ $$</p>
 \underbrace{\delta L^i}_{\substack{\text{Work of}\\\text{internal forces}}} = \underbrace{\delta L^e}_{\substack{\text{Work of}\\\text{external forces}}}
 $$</p>
 <p>$$
-\delta L^i = \int_\Omega \underline{\sigma}^T \cdot \underline{\delta \epsilon}\, \mathrm{d}\Omega  
+\delta L^i = \iint_\Omega \underline{\sigma}^T \cdot \underline{\delta \epsilon}\, \mathrm{d}\Omega  
 $$</p>
 <p>$$
-\delta L^e = \int_\Omega X^T \cdot \underline{\delta u}\, \mathrm{d}\Omega + \int_\Gamma \underline{t}^T \cdot \underline{\delta u}\, \mathrm{d}S
+\delta L^e = \iint_\Omega \underline{X}^T \cdot \underline{\delta u}\, \mathrm{d}\Omega + \int_\Gamma \underline{t}^T \cdot \underline{\delta u}\, \mathrm{d}S
 $$</p>
 <p>$$
 \underline{u}^e = 
@@ -6272,7 +6327,7 @@ $$</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>$$
-\delta L^i = \int_{\Delta_e} \underline{\sigma}^T \cdot \underline{\delta \epsilon}\, \mathrm{d}A = \int_{\Delta_e} \underline{\delta \epsilon}^T \cdot \underline{\sigma} \, \mathrm{d}A
+\delta L^i = \iint_{\Delta^e} \underline{\sigma}^T \cdot \underline{\delta \epsilon}\, \mathrm{d}A = \iint_{\Delta^e} \underline{\delta \epsilon}^T \cdot \underline{\sigma} \, \mathrm{d}A
 $$</p>
 <p>$$
 \underline{\delta \epsilon} = B^e \cdot \delta \underline{u}^e_N
@@ -6281,8 +6336,26 @@ $$</p>
 \underline{\sigma} = D^e \cdot \underline{\epsilon} = D^e B^e \underline{u}^e_N
 $$</p>
 <p>$$
-\delta L^i = (\underline{u}^e_N)^T \int_{\Delta_e} (B^e)^T D^e B^e \underline{u}^e_N \, \mathrm{d}A = (\underline{u}^e_N)^T \left[ \Delta^e (B^e)^T D^e B^e \right] \underline{u}^e_N
+\delta L^i = (\underline{u}^e_N)^T \iint_{\Delta^e} (B^e)^T D^e B^e \underline{u}^e_N \, \mathrm{d}A = (\underline{u}^e_N)^T \left[ \Delta^e (B^e)^T D^e B^e \right] \underline{u}^e_N
 $$</p>
+<p>Now we need to compute $\delta L^e$:</p>
+<p>$$
+\begin{align}
+\delta L^e &amp;= \iint_{\Delta^e} \underline{X}^T N^e \delta \underline{u}^e_N\, \mathrm{d}A + \int_{\partial \Delta^e} \underline{t}^T N^e \delta \underline{u}^e_N
+\, \mathrm{d}S \\
+&amp;= (\delta \underline{u}^e_N)^T \underbrace{\left[ \iint_{\Delta^e} (N^e)^T \underline{X} \, \mathrm{d}A + \int_{\partial \Delta^e} N^T
+\underline{t}\, \mathrm{d}S \right]}_{\underline{f}^e_N}
+\end{align}
+$$</p>
+<p>Make the works equal:</p>
+<p>$$
+(\delta \underline{u}^e_N)^T \cdot \Delta^e \left[ (B^e)^T D^e B^e \right] \underline{u}^e_N = (\delta \underline{u}^e_N)^T \cdot \underline{f}^e_N
+$$</p>
+<p>The linear system above is for each finite element and it results in a global linear system as follows</p>
+<p>$$
+\mathbf{K} \vec{U} = \vec{F}
+$$</p>
+<p>where $\mathbf{K}$ is the stiffness matrix, $\vec{U}$ the unknowns and $\vec{F}$ the external forces.</p>
 </div>
 </div>
 </div>
@@ -6293,39 +6366,11 @@ $$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="numerical-implementation">Numerical Implementation</h2>
 <hr>
-<p>First, let&#39;s import the necessary packages. We&#39;ll need <a href="http://www.numpy.org/">numpy</a> and <a href="http://matplotlib.org/">matplotlib</a>.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[40]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-
-<span class="c"># Remove this line for a pop-up plot</span>
-<span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let&#39;s load our data. We&#39;ll work with two example cases: a small case and a large case. The input data is rather large, hence it will be configured in an external Python script (<code>fem_data.py</code>). From this script, we&#39;ll import the class <code>Setup</code> and the methods <code>GetSetupLargeCase</code> and <code>GetSetupSmallCase</code>, as they will configure our two examples.</p>
+<p>Let&#39;s load our data. We&#39;ll work with two example cases: a small case and a large case. The input data is rather large, hence it will be configured in an external Python script (<code>fem_data.py</code>). From this script, we&#39;ll import the class <code>Setup</code> and the methods <code>GetSetupLargeCase</code> and <code>GetSetupSmallCase</code>, as they will configure our two examples.</p>
 <p>The setup includes constants and variables such as the number of degrees of freedom, the coordinates of each node, the number of elements and the conectivity array, as well as the boundary conditions and properties of our problem.</p>
 <p>Some hipotesis that will be assumed are:</p>
 <ol>
-<li>All elements have the same number of nodes;</li>
+<li>All elements have the same number of nodes (triangles);</li>
 <li>Properties are the same for all elements;</li>
 </ol>
 </div>
@@ -6334,7 +6379,7 @@ In&nbsp;[40]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[41]:
+In&nbsp;[97]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6352,7 +6397,7 @@ In&nbsp;[41]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[42]:
+In&nbsp;[98]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6386,7 +6431,7 @@ In&nbsp;[42]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[43]:
+In&nbsp;[99]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6430,7 +6475,7 @@ In&nbsp;[43]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[44]:
+In&nbsp;[100]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6471,11 +6516,11 @@ In&nbsp;[44]:
 
     <span class="n">Ke</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">D</span> <span class="o">*</span> <span class="n">B</span> <span class="o">*</span> <span class="p">(</span><span class="n">area</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
 
-    <span class="n">Fe1</span> <span class="o">=</span> <span class="n">area</span> <span class="o">*</span> <span class="n">body_force</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span> \
-        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+    <span class="n">Fe1</span> <span class="o">=</span> <span class="p">(</span><span class="n">area</span> <span class="o">*</span> <span class="n">body_force</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span>
+        <span class="o">*</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
         
-    <span class="n">Fe2</span> <span class="o">=</span> <span class="n">area</span> <span class="o">*</span> <span class="n">body_force</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span> \
-        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">Fe2</span> <span class="o">=</span> <span class="p">(</span><span class="n">area</span> <span class="o">*</span> <span class="n">body_force</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span>
+        <span class="o">*</span>  <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">]))</span>
         
     <span class="n">Fe</span> <span class="o">=</span> <span class="n">Fe1</span> <span class="o">+</span> <span class="n">Fe2</span>
     
@@ -6487,24 +6532,29 @@ In&nbsp;[44]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The code below will generate the matrix <code>ID</code> that enumerates each equation (for $x$ and $y$ direction) to be solved.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[45]:
+In&nbsp;[101]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="c"># --------------------------------------</span>
-<span class="c"># Gera matriz ID que contabiliza equacoes</span>
-<span class="c"># --------------------------------------</span>
-
-<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight"><pre><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">ID</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">number_of_nodes</span><span class="p">,</span> <span class="n">number_of_dof</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_nodes</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_dof</span><span class="p">):</span>
-        <span class="n">ID</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">d</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
+    <span class="k">for</span> <span class="n">dof</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_dof</span><span class="p">):</span>
+        <span class="n">ID</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">dof</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
- 
+
 <span class="k">assert</span> <span class="n">count</span> <span class="o">==</span> <span class="n">number_of_dof</span> <span class="o">*</span> <span class="n">number_of_nodes</span>
 </pre></div>
 
@@ -6525,7 +6575,7 @@ In&nbsp;[45]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[46]:
+In&nbsp;[102]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6537,51 +6587,39 @@ In&nbsp;[46]:
 <span class="n">size_el</span> <span class="o">=</span> <span class="n">number_of_dof</span> <span class="o">*</span> <span class="n">number_of_nodes_el</span>
 
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_elements</span><span class="p">):</span>
-    <span class="c"># ----------------------------------------------------</span>
-    <span class="c"># Monta Vetor LM do elemento e coordenadas do elemento</span>
-    <span class="c"># ----------------------------------------------------</span>
+    
+    <span class="c"># Builds element LM vector and element coordinates </span>
+    <span class="c"># LM has the equations associated to element e</span>
     <span class="n">LM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size_el</span><span class="p">)</span>
     <span class="n">coord_el</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size_el</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
     
     <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_nodes_el</span><span class="p">):</span>
-        <span class="n">J</span> <span class="o">=</span> <span class="n">connectivity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_dof</span><span class="p">):</span>
-            <span class="n">LM</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="n">ID</span><span class="p">[</span><span class="n">J</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">J</span> <span class="o">=</span> <span class="n">connectivity</span><span class="p">[</span><span class="n">e</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="c"># global node of element</span>
+        <span class="k">for</span> <span class="n">dof</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_dof</span><span class="p">):</span>
+            <span class="n">LM</span><span class="p">[</span><span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="n">ID</span><span class="p">[</span><span class="n">J</span><span class="p">,</span><span class="n">dof</span><span class="p">]</span>
             <span class="n">z</span> <span class="o">+=</span> <span class="mi">1</span>      
 
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
             <span class="n">coord_el</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">J</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
-       
-    <span class="c"># -------------------------------------</span>
-    <span class="c"># Chama a funcao que calcula as </span>
-    <span class="c"># matrizes elementares &quot;Ke&quot;,&quot;Me&quot;</span>
-    <span class="c"># e o vetor de carga elementar &quot;Fe&quot;</span>
-    <span class="c"># -------------------------------------</span>
 
+    <span class="c"># Calls method that calculates element</span>
+    <span class="c"># matrix Ke and element load vector Fe</span>
     <span class="n">Ke</span><span class="p">,</span> <span class="n">Fe</span> <span class="o">=</span> <span class="n">KeT3_EPT</span><span class="p">(</span>
         <span class="n">coord_el</span><span class="p">,</span> 
         <span class="n">material_properties</span><span class="p">,</span> 
         <span class="n">geometric_properties</span><span class="p">,</span>
         <span class="n">body_force</span>
         <span class="p">)</span>
-    
-    <span class="c"># ---------------------------------------------</span>
-    <span class="c"># Insere a matriz Ke elementar na matriz global K</span>
-    <span class="c"># Insere o vetor de carga Fe em F</span>
-    <span class="c"># Insere a matriz Me na global M </span>
-    <span class="c"># ---------------------------------------------</span>
    
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size_el</span><span class="p">):</span>
         <span class="n">I</span> <span class="o">=</span> <span class="n">LM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        
-        <span class="k">if</span> <span class="n">I</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size_el</span><span class="p">):</span>
-                <span class="n">J</span> <span class="o">=</span> <span class="n">LM</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-                <span class="k">if</span> <span class="n">J</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>                    
-                    <span class="n">K</span><span class="p">[</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">]</span> <span class="o">=</span> <span class="n">K</span><span class="p">[</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">]</span> <span class="o">+</span> <span class="n">Ke</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
-                    
-            <span class="n">F</span><span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">+</span> <span class="n">Fe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size_el</span><span class="p">):</span>
+            <span class="n">J</span> <span class="o">=</span> <span class="n">LM</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>  
+            <span class="c"># Adds element matrix Ke to global matrix K</span>
+            <span class="n">K</span><span class="p">[</span><span class="n">I</span><span class="p">,</span><span class="n">J</span><span class="p">]</span> <span class="o">+=</span> <span class="n">Ke</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+        <span class="c"># Adds load vector Fe in F        </span>
+        <span class="n">F</span><span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">I</span><span class="p">]</span> <span class="o">+</span> <span class="n">Fe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> 
 </pre></div>
 
 </div>
@@ -6601,7 +6639,7 @@ In&nbsp;[46]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[47]:
+In&nbsp;[103]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6620,14 +6658,14 @@ In&nbsp;[47]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And similarly for the Dirichlet boundary condition:</p>
+<p>For the Dirichlet boundary condition, we set the line of the matrix associated to the unknown with prescribed value to zero with value one in the diagonal, we subtract the column of the matrix that corresponds to that unknown from the independent vector and make that column equal to zero.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[48]:
+In&nbsp;[104]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6635,10 +6673,14 @@ In&nbsp;[48]:
     <span class="n">eq</span> <span class="o">=</span> <span class="n">ID</span><span class="p">[</span><span class="n">node</span><span class="p">,</span><span class="n">dof</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
         <span class="n">F</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">=</span> <span class="n">F</span><span class="p">[</span><span class="n">g</span><span class="p">]</span> <span class="o">-</span> <span class="n">value</span> <span class="o">*</span> <span class="n">K</span><span class="p">[</span><span class="n">g</span><span class="p">,</span><span class="n">eq</span><span class="p">]</span>
-        <span class="n">K</span><span class="p">[</span><span class="n">eq</span><span class="p">,</span><span class="n">g</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">K</span><span class="p">[</span><span class="n">g</span><span class="p">,</span><span class="n">eq</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="c"># zeros the whole line and column</span>
+        <span class="c"># associated to eq, except the</span>
+        <span class="c"># diagonal that is equal to 1.0</span>
+        <span class="n">K</span><span class="p">[</span><span class="n">eq</span><span class="p">,</span><span class="n">g</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">K</span><span class="p">[</span><span class="n">g</span><span class="p">,</span><span class="n">eq</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
    
-    <span class="n">K</span><span class="p">[</span><span class="n">eq</span><span class="p">,</span><span class="n">eq</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">K</span><span class="p">[</span><span class="n">eq</span><span class="p">,</span><span class="n">eq</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="n">F</span><span class="p">[</span><span class="n">eq</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 </pre></div>
 
@@ -6659,7 +6701,7 @@ In&nbsp;[48]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[49]:
+In&nbsp;[105]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6683,7 +6725,7 @@ In&nbsp;[49]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[50]:
+In&nbsp;[106]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -6691,9 +6733,9 @@ In&nbsp;[50]:
 <span class="n">Uf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">number_of_nodes</span><span class="p">,</span> <span class="n">number_of_dof</span><span class="p">))</span>
 
 <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_nodes</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_dof</span><span class="p">):</span>
-        <span class="n">Uf</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_nodes</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">dof</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_dof</span><span class="p">):</span>
+        <span class="n">Uf</span><span class="p">[</span><span class="n">n</span><span class="p">,</span><span class="n">dof</span><span class="p">]</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
         <span class="n">b</span> <span class="o">+=</span> <span class="mi">1</span>
 
 <span class="c"># Amplifying factor for vizualization purposes</span>
@@ -6721,7 +6763,7 @@ In&nbsp;[50]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[51]:
+In&nbsp;[107]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -11330,7 +11372,7 @@ AABJRU5ErkJggg==
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[52]:
+In&nbsp;[108]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -11376,7 +11418,8 @@ In&nbsp;[52]:
     <span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">StressE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">StressE</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     
-    <span class="c"># Tensao Sz is ZERO</span>
+    <span class="c"># Stress in z direction is ZERO </span>
+    <span class="c"># under plane stress conditions</span>
     <span class="n">StressE</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">StressE</span><span class="p">,</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     
     <span class="c"># Calculate principal stresses by </span>
@@ -11404,13 +11447,14 @@ In&nbsp;[52]:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="stress-calculation">Stress calculation</h2>
+<p>Calulates the stress and performs averaging.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[53]:
+In&nbsp;[109]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -11422,11 +11466,10 @@ In&nbsp;[53]:
 <span class="n">SVM</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">number_of_nodes</span><span class="p">)</span>
 <span class="n">STR</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">number_of_nodes</span><span class="p">)</span>
 
-<span class="c"># calcula tensoes e faz as medias.</span>
 <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">number_of_elements</span><span class="p">):</span>
-    <span class="c"># ----------------------------------------------------</span>
-    <span class="c"># Monta Vetor LM do elemento, coordenadas e deslocamentos do elemento</span>
-    <span class="c"># ----------------------------------------------------</span>
+    
+    <span class="c"># Builds element LM vector and element coordinates </span>
+    <span class="c"># and element displacement</span>
     <span class="n">LM</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size_el</span><span class="p">)</span>
     <span class="n">UEl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size_el</span><span class="p">)</span>    
     <span class="n">coord_el</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">size_el</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
@@ -11441,25 +11484,16 @@ In&nbsp;[53]:
       
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
             <span class="n">coord_el</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="n">J</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
-   
-    <span class="c"># -------------------------------------</span>
-    <span class="c"># Chama a funcao que calcula as </span>
-    <span class="c"># matrizes elementares &quot;Ke&quot;,&quot;Me&quot;</span>
-    <span class="c"># e o vetor de carga elementar &quot;Fe&quot;</span>
-    <span class="c"># -------------------------------------</span>
-
+  
+    <span class="c"># Calls method that calculates element</span>
+    <span class="c"># stress StressE, von Mises stress SVME</span>
+    <span class="c"># and Tresca stress STRE</span>
     <span class="n">StressE</span><span class="p">,</span> <span class="n">SVME</span><span class="p">,</span> <span class="n">STRE</span> <span class="o">=</span> <span class="n">StressT3_EPT</span><span class="p">(</span>
         <span class="n">coord_el</span><span class="p">,</span> 
         <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">UEl</span><span class="p">),</span> 
         <span class="n">material_properties</span><span class="p">,</span> 
         <span class="n">geometric_properties</span>
-        <span class="p">)</span>   
-    
-    <span class="c"># ---------------------------------------------</span>
-    <span class="c"># Insere a matriz Ke elementar na matriz global K</span>
-    <span class="c"># Insere o vetor de carga Fe em F</span>
-    <span class="c"># Insere a matriz Me na global M </span>
-    <span class="c"># ---------------------------------------------</span>
+        <span class="p">)</span> 
    
     <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">connectivity</span><span class="p">[</span><span class="n">e</span><span class="p">]</span>
 
@@ -11518,7 +11552,7 @@ In&nbsp;[53]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[54]:
+In&nbsp;[110]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -12802,7 +12836,7 @@ oVDEiBJbCoVCoVAoFDGixJZCoVAoFApFjPx/9cAOXm6r8eIAAAAASUVORK5CYII=
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[55]:
+In&nbsp;[111]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -12819,7 +12853,22 @@ In&nbsp;[55]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[55]:
+In&nbsp;[77]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
