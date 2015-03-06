@@ -1650,7 +1650,7 @@ div#notebook {
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
+    	<!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
@@ -1664,11 +1664,14 @@ div#notebook {
         displayAlign: 'center',
         "HTML-CSS": {
             styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
+            linebreaks: { automatic: true },
+			scale: 200,
+			preferredFont: null,
+			webFont: "Neo-Euler"
         }
     });
     </script>
-    <!-- End of mathjax configuration --><!-- MathJax configuration -->
+    <!-- End of mathjax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
