@@ -36,7 +36,9 @@ Replace MathJax
         "HTML-CSS": {
             styles: {'.MathJax_Display': {"margin": 0}},
             linebreaks: { automatic: true },
-			scale: 200
+			scale: 200,
+			preferredFont: null,
+			webFont: "Neo-Euler"
         }
     });
     </script>
